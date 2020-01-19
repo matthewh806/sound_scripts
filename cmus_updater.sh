@@ -1,6 +1,9 @@
 #!/bin/bash
 
 cmus-remote -C clear
+
+python -c "from song_tagger import recurse_artist; recurse_artist('mdh', '$HOME/Documents/Music/Projects/renders/mdh')"
+
 cmus-remote -C "add ~/Documents/Music/Projects/renders/"
 cmus-remote -C "add ~/Documents/Music/others_songs"
 cmus-remote -C "add ~/Documents/Music/books/Music Theory"

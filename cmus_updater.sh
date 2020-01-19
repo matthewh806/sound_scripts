@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: Run the song_tagger.py to update ID3 tags beforehand?
 cmus-remote -C clear
 cmus-remote -C "add ~/Documents/Music/Projects/renders/"
 cmus-remote -C "add ~/Documents/Music/others_songs"
@@ -12,7 +11,9 @@ for p in ~/Documents/Music/Projects/OP-1/*/*/*; do
 	if [[ ! -e "$p/$filename.mp3" ]]; then
 		ffmpeg -i "$p/$filename.aif" "$p/$filename.mp3"
 	fi
-	
+
+	python -c "from song_tagger import add_meta_data; add_meta_data('$p/$filename.mp3', 'mdh', 'op1', '', '$filename')"
+
 	cmus-remote -C "add $p/$filename.mp3"
 done
 
